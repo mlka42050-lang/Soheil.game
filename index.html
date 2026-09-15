@@ -2,312 +2,295 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>S.H.L | ورود</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>S.H.L</title>
 
 <style>
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
     font-family:Tahoma,Arial,sans-serif;
 }
 
 body{
-    margin:0;
     min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:
-    radial-gradient(circle at top,#263d75,#090d18 65%);
+    background:linear-gradient(135deg,#080b16,#111c38,#080b16);
     color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-.box{
-    width:92%;
-    max-width:400px;
-    padding:30px;
+.login{
+    width:90%;
+    max-width:380px;
+    padding:35px 25px;
+    text-align:center;
     border-radius:25px;
     background:rgba(255,255,255,.08);
     border:1px solid rgba(255,255,255,.15);
     box-shadow:0 20px 60px rgba(0,0,0,.5);
-    text-align:center;
 }
 
 .logo{
-    width:80px;
-    height:80px;
+    width:85px;
+    height:85px;
     margin:auto;
     display:flex;
     align-items:center;
     justify-content:center;
-    border-radius:22px;
-    background:linear-gradient(135deg,#00c6ff,#704cff);
+    border-radius:25px;
+    background:linear-gradient(135deg,#00c6ff,#684cff);
     font-size:23px;
     font-weight:bold;
+    box-shadow:0 10px 35px rgba(0,180,255,.3);
 }
 
 h1{
-    margin:18px 0 8px;
+    margin-top:20px;
+    font-size:26px;
 }
 
-p{
-    color:#aab4ce;
+.subtitle{
+    margin-top:10px;
+    margin-bottom:25px;
+    color:#aab5ce;
     font-size:13px;
 }
 
 input{
     width:100%;
-    margin-top:12px;
-    padding:15px;
-    border-radius:13px;
-    border:1px solid rgba(255,255,255,.12);
-    outline:none;
+    padding:16px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.15);
     background:rgba(0,0,0,.25);
     color:white;
+    outline:none;
     text-align:center;
-    font-size:15px;
+    font-size:16px;
+}
+
+input::placeholder{
+    color:#8994ad;
 }
 
 button{
     width:100%;
-    margin-top:14px;
-    padding:15px;
+    padding:16px;
+    margin-top:15px;
     border:0;
-    border-radius:13px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#00bfff,#684cff);
     color:white;
+    font-size:16px;
     font-weight:bold;
-    font-size:15px;
     cursor:pointer;
-    background:linear-gradient(135deg,#00bfff,#654cff);
 }
 
-.switch{
-    margin-top:18px;
-    color:#00c6ff;
-    cursor:pointer;
-    font-size:13px;
-}
-
-.message{
+#error{
     display:none;
     margin-top:15px;
-    padding:10px;
-    border-radius:10px;
+    color:#ff8585;
     font-size:13px;
 }
 
-#home{
+#site{
     display:none;
+    width:92%;
+    max-width:900px;
+}
+
+.header{
+    padding:20px;
+    border-radius:20px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
     text-align:center;
+}
+
+.header h1{
+    margin:0;
+}
+
+.cards{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+}
+
+.card{
+    padding:25px;
+    border-radius:18px;
+    background:rgba(255,255,255,.07);
+    text-align:center;
+}
+
+.card span{
+    font-size:35px;
+}
+
+.card h2{
+    margin-top:12px;
+    font-size:17px;
 }
 
 .logout{
     background:#e74c3c;
+    max-width:180px;
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- ورود / ثبت نام -->
-<div class="box" id="auth">
+<!-- صفحه ورود -->
+<div class="login" id="loginBox">
 
-    <div class="logo">S.H.L</div>
+    <div class="logo">
+        S.H.L
+    </div>
 
-    <h1 id="title">ورود</h1>
+    <h1>ورود به سایت</h1>
 
-    <p id="description">
-        برای ورود نام کاربری و رمز خودت را وارد کن
-    </p>
+    <div class="subtitle">
+        برای ورود فقط رمز عبور را وارد کنید
+    </div>
 
     <input
-        id="username"
-        type="text"
-        placeholder="نام کاربری"
+        type="password"
+        id="password"
+        placeholder="رمز عبور"
         autocomplete="off"
     >
 
-    <input
-        id="password"
-        type="password"
-        placeholder="رمز عبور"
-        autocomplete="new-password"
-    >
-
-    <button onclick="submitForm()" id="mainButton">
+    <button onclick="login()">
         ورود
     </button>
 
-    <div class="switch" onclick="changeMode()" id="switchText">
-        حساب نداری؟ ثبت نام کن
+    <div id="error">
+        رمز عبور اشتباه است!
     </div>
-
-    <div class="message" id="message"></div>
 
 </div>
 
 
-<!-- صفحه بعد از ورود -->
-<div class="box" id="home">
+<!-- محتوای سایت -->
+<div id="site">
 
-    <div class="logo">S.H.L</div>
+    <div class="header">
 
-    <h1>خوش آمدی 👋</h1>
+        <h1>
+            🎮 به S.H.L خوش آمدید
+        </h1>
 
-    <p id="welcome"></p>
+        <p style="color:#aab5ce;margin-top:10px;">
+            وارد سایت شدید
+        </p>
 
-    <button class="logout" onclick="logout()">
-        خروج
-    </button>
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+            <span>🎮</span>
+            <h2>بازی‌ها</h2>
+        </div>
+
+        <div class="card">
+            <span>🔥</span>
+            <h2>محبوب‌ترین‌ها</h2>
+        </div>
+
+        <div class="card">
+            <span>⭐</span>
+            <h2>منتخب‌ها</h2>
+        </div>
+
+    </div>
+
+
+    <div style="text-align:center;margin-top:20px;">
+
+        <button class="logout" onclick="logout()">
+            خروج
+        </button>
+
+    </div>
 
 </div>
 
 
 <script>
 
-let registerMode = false;
+/*
+================================
+رمز ورود سایت
+================================
+*/
 
-/* تغییر بین ورود و ثبت نام */
-
-function changeMode(){
-
-    registerMode = !registerMode;
-
-    document.getElementById("message").style.display="none";
-
-    if(registerMode){
-
-        document.getElementById("title").innerText="ثبت نام";
-
-        document.getElementById("description").innerText=
-        "نام کاربری و رمز دلخواه خودت را بساز";
-
-        document.getElementById("mainButton").innerText=
-        "ساخت حساب";
-
-        document.getElementById("switchText").innerText=
-        "حساب داری؟ وارد شو";
-
-    }else{
-
-        document.getElementById("title").innerText="ورود";
-
-        document.getElementById("description").innerText=
-        "برای ورود نام کاربری و رمز خودت را وارد کن";
-
-        document.getElementById("mainButton").innerText=
-        "ورود";
-
-        document.getElementById("switchText").innerText=
-        "حساب نداری؟ ثبت نام کن";
-    }
-}
+const PASSWORD = "soheil1825s";
 
 
-/* ثبت نام یا ورود */
+function login(){
 
-function submitForm(){
-
-    const username =
-        document.getElementById("username").value.trim();
-
-    const password =
+    const enteredPassword =
         document.getElementById("password").value;
 
-    const message =
-        document.getElementById("message");
+    const error =
+        document.getElementById("error");
 
-    if(username === "" || password === ""){
 
-        showMessage("لطفاً هر دو قسمت را وارد کن");
+    if(enteredPassword === PASSWORD){
 
-        return;
-    }
+        document.getElementById("loginBox").style.display="none";
 
-    if(registerMode){
+        document.getElementById("site").style.display="block";
 
-        /*
-        ذخیره حساب روی همین مرورگر
-        */
-
-        localStorage.setItem(
-            "user_" + username,
-            password
-        );
-
-        showMessage("حساب با موفقیت ساخته شد");
-
-        setTimeout(function(){
-
-            registerMode=false;
-
-            changeMode();
-
-        },1000);
+        error.style.display="none";
 
     }else{
 
-        const savedPassword =
-            localStorage.getItem("user_" + username);
+        error.style.display="block";
 
-        if(savedPassword === null){
-
-            showMessage("این نام کاربری وجود ندارد");
-
-            return;
-        }
-
-        if(savedPassword !== password){
-
-            showMessage("رمز عبور اشتباه است");
-
-            return;
-        }
-
-        login(username);
     }
 }
 
 
-/* ورود موفق */
-
-function login(username){
-
-    document.getElementById("auth").style.display="none";
-
-    document.getElementById("home").style.display="block";
-
-    document.getElementById("welcome").innerText=
-    "کاربر " + username + "، با موفقیت وارد شدی.";
-}
-
-
-/* خروج */
+/*
+================================
+خروج
+================================
+*/
 
 function logout(){
 
-    document.getElementById("home").style.display="none";
+    document.getElementById("site").style.display="none";
 
-    document.getElementById("auth").style.display="block";
-
-    document.getElementById("username").value="";
+    document.getElementById("loginBox").style.display="block";
 
     document.getElementById("password").value="";
+
 }
 
 
-/* پیام */
+/*
+================================
+دکمه Enter
+================================
+*/
 
-function showMessage(text){
+document.getElementById("password")
+.addEventListener("keydown",function(event){
 
-    const message =
-        document.getElementById("message");
+    if(event.key === "Enter"){
+        login();
+    }
 
-    message.innerText=text;
-
-    message.style.display="block";
-}
+});
 
 </script>
 
