@@ -2,295 +2,1086 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>S.H.L</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>S.H.L Games</title>
 
 <style>
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Tahoma,Arial,sans-serif;
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Tahoma,Arial,sans-serif
 }
 
 body{
-    min-height:100vh;
-    background:linear-gradient(135deg,#080b16,#111c38,#080b16);
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+min-height:100vh;
+background:linear-gradient(135deg,#070b16,#111c38,#070b16);
+color:#fff
+}
+
+#loginPage{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px
 }
 
 .login{
-    width:90%;
-    max-width:380px;
-    padding:35px 25px;
-    text-align:center;
-    border-radius:25px;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.15);
-    box-shadow:0 20px 60px rgba(0,0,0,.5);
+width:100%;
+max-width:390px;
+padding:35px 25px;
+text-align:center;
+border-radius:25px;
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.15);
+box-shadow:0 20px 70px rgba(0,0,0,.5)
 }
 
 .logo{
-    width:85px;
-    height:85px;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:25px;
-    background:linear-gradient(135deg,#00c6ff,#684cff);
-    font-size:23px;
-    font-weight:bold;
-    box-shadow:0 10px 35px rgba(0,180,255,.3);
+width:85px;
+height:85px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:25px;
+background:linear-gradient(135deg,#00c6ff,#704cff);
+font-size:24px;
+font-weight:bold
 }
 
-h1{
-    margin-top:20px;
-    font-size:26px;
+.login h1{
+margin-top:20px
 }
 
-.subtitle{
-    margin-top:10px;
-    margin-bottom:25px;
-    color:#aab5ce;
-    font-size:13px;
+.login p{
+margin:10px 0 25px;
+color:#aab5ce;
+font-size:13px
 }
 
 input{
-    width:100%;
-    padding:16px;
-    border-radius:14px;
-    border:1px solid rgba(255,255,255,.15);
-    background:rgba(0,0,0,.25);
-    color:white;
-    outline:none;
-    text-align:center;
-    font-size:16px;
-}
-
-input::placeholder{
-    color:#8994ad;
+width:100%;
+padding:16px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,.15);
+background:rgba(0,0,0,.25);
+color:white;
+outline:none;
+text-align:center;
+font-size:16px
 }
 
 button{
-    width:100%;
-    padding:16px;
-    margin-top:15px;
-    border:0;
-    border-radius:14px;
-    background:linear-gradient(135deg,#00bfff,#684cff);
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
+border:0;
+border-radius:13px;
+padding:14px 20px;
+background:linear-gradient(135deg,#00bfff,#684cff);
+color:white;
+font-weight:bold;
+font-size:15px;
+cursor:pointer
+}
+
+.login button{
+width:100%;
+margin-top:15px
 }
 
 #error{
-    display:none;
-    margin-top:15px;
-    color:#ff8585;
-    font-size:13px;
+display:none;
+margin-top:15px;
+color:#ff8585;
+font-size:13px
 }
 
 #site{
-    display:none;
-    width:92%;
-    max-width:900px;
+display:none;
+min-height:100vh
 }
 
-.header{
-    padding:20px;
-    border-radius:20px;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.12);
-    text-align:center;
+header{
+height:75px;
+padding:0 25px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+background:#0d1428;
+border-bottom:1px solid rgba(255,255,255,.1)
 }
 
-.header h1{
-    margin:0;
+.brand{
+font-size:22px;
+font-weight:bold
 }
 
-.cards{
-    margin-top:20px;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:15px;
-}
-
-.card{
-    padding:25px;
-    border-radius:18px;
-    background:rgba(255,255,255,.07);
-    text-align:center;
-}
-
-.card span{
-    font-size:35px;
-}
-
-.card h2{
-    margin-top:12px;
-    font-size:17px;
+.brand span{
+color:#00c6ff
 }
 
 .logout{
-    background:#e74c3c;
-    max-width:180px;
+background:#e74c3c;
+padding:10px 18px
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:30px 18px
+}
+
+.hero{
+padding:30px;
+border-radius:25px;
+background:linear-gradient(135deg,rgba(0,198,255,.13),rgba(112,76,255,.13));
+border:1px solid rgba(255,255,255,.1);
+text-align:center
+}
+
+.hero h1{
+font-size:28px
+}
+
+.hero p{
+margin-top:10px;
+color:#aab5ce
+}
+
+.games{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px;
+margin-top:25px
+}
+
+.game{
+padding:25px;
+border-radius:20px;
+background:#111a30;
+border:1px solid rgba(255,255,255,.08);
+text-align:center;
+transition:.2s
+}
+
+.game:hover{
+transform:translateY(-5px)
+}
+
+.game-icon{
+font-size:55px
+}
+
+.game h2{
+margin:12px 0 8px
+}
+
+.game p{
+color:#9da8c0;
+font-size:13px;
+margin-bottom:18px
+}
+
+.game button{
+width:100%
+}
+
+#gameScreen{
+display:none;
+max-width:900px;
+margin:auto;
+padding:25px 18px
+}
+
+.gameTop{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:20px
+}
+
+.gameTop h1{
+font-size:22px
+}
+
+.back{
+background:#27324d
+}
+
+canvas{
+display:block;
+width:100%;
+max-width:500px;
+height:auto;
+margin:15px auto;
+background:#050914;
+border-radius:15px;
+border:2px solid #263653
+}
+
+.score{
+text-align:center;
+font-size:20px;
+margin:15px
+}
+
+.controls{
+display:grid;
+grid-template-columns:repeat(3,60px);
+justify-content:center;
+gap:7px
+}
+
+.controls button{
+height:55px;
+padding:0;
+font-size:22px;
+background:#27324d
+}
+
+.empty{
+visibility:hidden
+}
+
+.clickArea{
+height:420px;
+position:relative;
+overflow:hidden;
+border-radius:20px;
+background:#070d1c;
+border:1px solid #263653
+}
+
+.target{
+position:absolute;
+width:65px;
+height:65px;
+border-radius:50%;
+background:linear-gradient(135deg,#00c6ff,#704cff);
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+font-size:25px
+}
+
+.dodgeArea{
+height:420px;
+position:relative;
+overflow:hidden;
+border-radius:20px;
+background:#070d1c;
+border:1px solid #263653
+}
+
+.player{
+position:absolute;
+bottom:15px;
+left:50%;
+width:45px;
+height:45px;
+border-radius:10px;
+background:#00c6ff;
+transform:translateX(-50%)
+}
+
+.enemy{
+position:absolute;
+top:-50px;
+width:40px;
+height:40px;
+border-radius:8px;
+background:#ff4d6d
+}
+
+@media(max-width:600px){
+
+header{
+padding:0 15px
+}
+
+.brand{
+font-size:18px
+}
+
+.hero h1{
+font-size:23px
+}
+
+.clickArea,
+.dodgeArea{
+height:360px
+}
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- صفحه ورود -->
-<div class="login" id="loginBox">
+<!-- ورود -->
 
-    <div class="logo">
-        S.H.L
-    </div>
+<section id="loginPage">
 
-    <h1>ورود به سایت</h1>
+<div class="login">
 
-    <div class="subtitle">
-        برای ورود فقط رمز عبور را وارد کنید
-    </div>
+<div class="logo">S.H.L</div>
 
-    <input
-        type="password"
-        id="password"
-        placeholder="رمز عبور"
-        autocomplete="off"
-    >
+<h1>ورود به S.H.L</h1>
 
-    <button onclick="login()">
-        ورود
-    </button>
+<p>برای ورود فقط رمز عبور را وارد کنید</p>
 
-    <div id="error">
-        رمز عبور اشتباه است!
-    </div>
+<input
+id="password"
+type="password"
+placeholder="رمز عبور"
+autocomplete="off">
+
+<button onclick="login()">
+ورود به سایت
+</button>
+
+<div id="error">
+رمز عبور اشتباه است!
+</div>
+
+</div>
+
+</section>
+
+
+<!-- سایت -->
+
+<section id="site">
+
+<header>
+
+<div class="brand">
+S.H.L <span>GAMES</span>
+</div>
+
+<button class="logout" onclick="logout()">
+خروج
+</button>
+
+</header>
+
+
+<div class="container" id="home">
+
+<div class="hero">
+
+<h1>🎮 مرکز بازی S.H.L</h1>
+
+<p>یک بازی انتخاب کن و شروع کن!</p>
 
 </div>
 
 
-<!-- محتوای سایت -->
-<div id="site">
+<div class="games">
 
-    <div class="header">
+<div class="game">
 
-        <h1>
-            🎮 به S.H.L خوش آمدید
-        </h1>
+<div class="game-icon">🐍</div>
 
-        <p style="color:#aab5ce;margin-top:10px;">
-            وارد سایت شدید
-        </p>
+<h2>مار</h2>
 
-    </div>
+<p>غذاها را بخور و رکورد بزن!</p>
 
-
-    <div class="cards">
-
-        <div class="card">
-            <span>🎮</span>
-            <h2>بازی‌ها</h2>
-        </div>
-
-        <div class="card">
-            <span>🔥</span>
-            <h2>محبوب‌ترین‌ها</h2>
-        </div>
-
-        <div class="card">
-            <span>⭐</span>
-            <h2>منتخب‌ها</h2>
-        </div>
-
-    </div>
-
-
-    <div style="text-align:center;margin-top:20px;">
-
-        <button class="logout" onclick="logout()">
-            خروج
-        </button>
-
-    </div>
+<button onclick="openSnake()">
+شروع بازی
+</button>
 
 </div>
+
+
+<div class="game">
+
+<div class="game-icon">🎯</div>
+
+<h2>کلیک سریع</h2>
+
+<p>در ۳۰ ثانیه تا می‌توانی هدف را بزن!</p>
+
+<button onclick="openClicker()">
+شروع بازی
+</button>
+
+</div>
+
+
+<div class="game">
+
+<div class="game-icon">🧱</div>
+
+<h2>فرار</h2>
+
+<p>از مربع‌های قرمز فرار کن!</p>
+
+<button onclick="openDodge()">
+شروع بازی
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- صفحه بازی -->
+
+<div id="gameScreen">
+
+<div class="gameTop">
+
+<h1 id="gameTitle"></h1>
+
+<button class="back" onclick="closeGame()">
+← بازی‌ها
+</button>
+
+</div>
+
+
+<!-- مار -->
+
+<div id="snakeGame" style="display:none">
+
+<div class="score">
+امتیاز:
+<span id="snakeScore">0</span>
+</div>
+
+<canvas id="snakeCanvas"
+width="400"
+height="400">
+</canvas>
+
+<div class="controls">
+
+<div class="empty"></div>
+
+<button onclick="changeDirection('up')">⬆️</button>
+
+<div class="empty"></div>
+
+<button onclick="changeDirection('right')">➡️</button>
+
+<button onclick="changeDirection('down')">⬇️</button>
+
+<button onclick="changeDirection('left')">⬅️</button>
+
+</div>
+
+</div>
+
+
+<!-- کلیک سریع -->
+
+<div id="clickerGame" style="display:none">
+
+<div class="score">
+
+زمان:
+<span id="clickTime">30</span>
+
+&nbsp;&nbsp;
+
+امتیاز:
+<span id="clickScore">0</span>
+
+</div>
+
+<div class="clickArea" id="clickArea">
+
+<div class="target"
+id="target"
+onclick="hitTarget()">
+
+🎯
+
+</div>
+
+</div>
+
+<div style="text-align:center;margin-top:15px">
+
+<button onclick="startClicker()">
+شروع دوباره
+</button>
+
+</div>
+
+</div>
+
+
+<!-- فرار -->
+
+<div id="dodgeGame" style="display:none">
+
+<div class="score">
+
+امتیاز:
+<span id="dodgeScore">0</span>
+
+</div>
+
+<div class="dodgeArea" id="dodgeArea">
+
+<div class="player" id="player"></div>
+
+</div>
+
+<div class="controls">
+
+<button onclick="movePlayer(-1)">⬅️</button>
+
+<div></div>
+
+<button onclick="movePlayer(1)">➡️</button>
+
+</div>
+
+<p style="text-align:center;color:#9da8c0;margin-top:15px">
+در کامپیوتر از کلیدهای ← و → استفاده کن
+</p>
+
+</div>
+
+</div>
+
+</section>
 
 
 <script>
 
-/*
-================================
-رمز ورود سایت
-================================
-*/
+/* رمز سایت */
 
-const PASSWORD = "soheil1825s";
+const PASSWORD="soheil1825s";
 
+
+/* ورود */
 
 function login(){
 
-    const enteredPassword =
-        document.getElementById("password").value;
+const password=
+document.getElementById("password").value;
 
-    const error =
-        document.getElementById("error");
+if(password===PASSWORD){
 
+document.getElementById("loginPage").style.display="none";
 
-    if(enteredPassword === PASSWORD){
+document.getElementById("site").style.display="block";
 
-        document.getElementById("loginBox").style.display="none";
+document.getElementById("error").style.display="none";
 
-        document.getElementById("site").style.display="block";
+}else{
 
-        error.style.display="none";
+document.getElementById("error").style.display="block";
 
-    }else{
+}
 
-        error.style.display="block";
-
-    }
 }
 
 
-/*
-================================
-خروج
-================================
-*/
+/* Enter */
+
+document
+.getElementById("password")
+.addEventListener("keydown",function(e){
+
+if(e.key==="Enter"){
+login();
+}
+
+});
+
+
+/* خروج */
 
 function logout(){
 
-    document.getElementById("site").style.display="none";
-
-    document.getElementById("loginBox").style.display="block";
-
-    document.getElementById("password").value="";
+location.reload();
 
 }
 
 
-/*
-================================
-دکمه Enter
-================================
-*/
+/* باز کردن بازی */
 
-document.getElementById("password")
-.addEventListener("keydown",function(event){
+function openGame(){
 
-    if(event.key === "Enter"){
-        login();
-    }
+document.getElementById("home").style.display="none";
+
+document.getElementById("gameScreen").style.display="block";
+
+}
+
+
+/* بستن بازی */
+
+function closeGame(){
+
+stopGames();
+
+document.getElementById("gameScreen").style.display="none";
+
+document.getElementById("home").style.display="block";
+
+}
+
+
+/* ================= مار ================= */
+
+let snake=[];
+let food={};
+let dx=20;
+let dy=0;
+let snakeTimer=null;
+
+
+function openSnake(){
+
+openGame();
+
+document.getElementById("gameTitle").innerText="🐍 بازی مار";
+
+document.getElementById("snakeGame").style.display="block";
+
+document.getElementById("clickerGame").style.display="none";
+
+document.getElementById("dodgeGame").style.display="none";
+
+startSnake();
+
+}
+
+
+function startSnake(){
+
+clearInterval(snakeTimer);
+
+snake=[
+{x:200,y:200},
+{x:180,y:200},
+{x:160,y:200}
+];
+
+dx=20;
+dy=0;
+
+document.getElementById("snakeScore").innerText="0";
+
+createFood();
+
+snakeTimer=setInterval(drawSnake,120);
+
+}
+
+
+function createFood(){
+
+food={
+x:Math.floor(Math.random()*20)*20,
+y:Math.floor(Math.random()*20)*20
+};
+
+}
+
+
+function drawSnake(){
+
+const canvas=
+document.getElementById("snakeCanvas");
+
+const ctx=canvas.getContext("2d");
+
+ctx.clearRect(0,0,400,400);
+
+const head={
+x:snake[0].x+dx,
+y:snake[0].y+dy
+};
+
+if(
+head.x<0 ||
+head.x>=400 ||
+head.y<0 ||
+head.y>=400 ||
+snake.some(s=>s.x===head.x&&s.y===head.y)
+){
+
+startSnake();
+
+return;
+
+}
+
+snake.unshift(head);
+
+if(head.x===food.x&&head.y===food.y){
+
+let score=
+parseInt(
+document.getElementById("snakeScore").innerText
+)+1;
+
+document.getElementById("snakeScore").innerText=score;
+
+createFood();
+
+}else{
+
+snake.pop();
+
+}
+
+snake.forEach((s,i)=>{
+
+ctx.fillStyle=
+i===0?"#00c6ff":"#4b72ff";
+
+ctx.fillRect(
+s.x+2,
+s.y+2,
+16,
+16
+);
 
 });
+
+ctx.fillStyle="#ff4d6d";
+
+ctx.beginPath();
+
+ctx.arc(
+food.x+10,
+food.y+10,
+8,
+0,
+Math.PI*2
+);
+
+ctx.fill();
+
+}
+
+
+function changeDirection(direction){
+
+if(direction==="up"&&dy===0){
+
+dx=0;
+dy=-20;
+
+}
+
+if(direction==="down"&&dy===0){
+
+dx=0;
+dy=20;
+
+}
+
+if(direction==="left"&&dx===0){
+
+dx=-20;
+dy=0;
+
+}
+
+if(direction==="right"&&dx===0){
+
+dx=20;
+dy=0;
+
+}
+
+}
+
+
+/* ================= کلیک سریع ================= */
+
+let clickTimer=null;
+let clickTime=30;
+let clickScore=0;
+
+
+function openClicker(){
+
+openGame();
+
+document.getElementById("gameTitle").innerText="🎯 کلیک سریع";
+
+document.getElementById("snakeGame").style.display="none";
+
+document.getElementById("clickerGame").style.display="block";
+
+document.getElementById("dodgeGame").style.display="none";
+
+startClicker();
+
+}
+
+
+function startClicker(){
+
+clearInterval(clickTimer);
+
+clickTime=30;
+clickScore=0;
+
+document.getElementById("clickTime").innerText=30;
+
+document.getElementById("clickScore").innerText=0;
+
+moveTarget();
+
+clickTimer=setInterval(function(){
+
+clickTime--;
+
+document.getElementById("clickTime").innerText=clickTime;
+
+if(clickTime<=0){
+
+clearInterval(clickTimer);
+
+alert("زمان تمام شد! امتیاز شما: "+clickScore);
+
+}
+
+},1000);
+
+}
+
+
+function moveTarget(){
+
+const area=
+document.getElementById("clickArea");
+
+const target=
+document.getElementById("target");
+
+const maxX=
+area.clientWidth-70;
+
+const maxY=
+area.clientHeight-70;
+
+target.style.left=
+Math.random()*maxX+"px";
+
+target.style.top=
+Math.random()*maxY+"px";
+
+}
+
+
+function hitTarget(){
+
+if(clickTime<=0)return;
+
+clickScore++;
+
+document.getElementById("clickScore").innerText=
+clickScore;
+
+moveTarget();
+
+}
+
+
+/* ================= فرار ================= */
+
+let dodgeTimer=null;
+let enemyTimer=null;
+let dodgeScore=0;
+let playerPosition=50;
+
+
+function openDodge(){
+
+openGame();
+
+document.getElementById("gameTitle").innerText="🧱 فرار";
+
+document.getElementById("snakeGame").style.display="none";
+
+document.getElementById("clickerGame").style.display="none";
+
+document.getElementById("dodgeGame").style.display="block";
+
+startDodge();
+
+}
+
+
+function startDodge(){
+
+clearInterval(dodgeTimer);
+clearInterval(enemyTimer);
+
+dodgeScore=0;
+playerPosition=50;
+
+document.getElementById("dodgeScore").innerText=0;
+
+document.querySelectorAll(".enemy")
+.forEach(e=>e.remove());
+
+document.getElementById("player").style.left="50%";
+
+dodgeTimer=setInterval(function(){
+
+dodgeScore++;
+
+document.getElementById("dodgeScore").innerText=
+dodgeScore;
+
+},1000);
+
+enemyTimer=setInterval(createEnemy,700);
+
+}
+
+
+function createEnemy(){
+
+const area=
+document.getElementById("dodgeArea");
+
+const enemy=
+document.createElement("div");
+
+enemy.className="enemy";
+
+enemy.style.left=
+Math.random()*(area.clientWidth-40)+"px";
+
+area.appendChild(enemy);
+
+let y=-50;
+
+const fall=setInterval(function(){
+
+y+=5;
+
+enemy.style.top=y+"px";
+
+const player=
+document.getElementById("player");
+
+const eRect=
+enemy.getBoundingClientRect();
+
+const pRect=
+player.getBoundingClientRect();
+
+if(
+eRect.bottom>pRect.top &&
+eRect.top<pRect.bottom &&
+eRect.right>pRect.left &&
+eRect.left<pRect.right
+){
+
+clearInterval(fall);
+
+alert(
+"باختی! امتیاز: "+dodgeScore
+);
+
+startDodge();
+
+}
+
+if(y>area.clientHeight){
+
+clearInterval(fall);
+
+enemy.remove();
+
+}
+
+},30);
+
+}
+
+
+function movePlayer(direction){
+
+playerPosition+=direction*8;
+
+if(playerPosition<5)
+playerPosition=5;
+
+if(playerPosition>95)
+playerPosition=95;
+
+document.getElementById("player").style.left=
+playerPosition+"%";
+
+}
+
+
+/* کیبورد */
+
+document.addEventListener("keydown",function(e){
+
+if(e.key==="ArrowUp")
+changeDirection("up");
+
+if(e.key==="ArrowDown")
+changeDirection("down");
+
+if(e.key==="ArrowLeft"){
+
+if(document.getElementById("snakeGame").style.display==="block"){
+
+changeDirection("left");
+
+}else{
+
+movePlayer(-1);
+
+}
+
+}
+
+if(e.key==="ArrowRight"){
+
+if(document.getElementById("snakeGame").style.display==="block"){
+
+changeDirection("right");
+
+}else{
+
+movePlayer(1);
+
+}
+
+}
+
+});
+
+
+/* توقف بازی‌ها */
+
+function stopGames(){
+
+clearInterval(snakeTimer);
+
+clearInterval(clickTimer);
+
+clearInterval(dodgeTimer);
+
+clearInterval(enemyTimer);
+
+document.querySelectorAll(".enemy")
+.forEach(e=>e.remove());
+
+}
 
 </script>
 
