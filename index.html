@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S.H.L | Admin</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:Tahoma,Arial,sans-serif;
+background:#060914;
+color:white;
+min-height:100vh;
+}
+
+header{
+padding:25px;
+text-align:center;
+background:linear-gradient(135deg,#111b3a,#25103d);
+border-bottom:1px solid #304066;
+}
+
+.logo{
+font-size:35px;
+font-weight:900;
+color:#62e5ff;
+letter-spacing:5px;
+}
+
+.container{
+width:min(1000px,94%);
+margin:30px auto;
+}
+
+.login,.panel{
+background:#0d1428;
+border:1px solid #2d3c62;
+border-radius:20px;
+padding:25px;
+}
+
+.login{
+max-width:450px;
+margin:60px auto;
+}
+
+h1,h2{
+margin-bottom:18px;
+}
+
+input{
+width:100%;
+padding:14px;
+margin-bottom:12px;
+border-radius:12px;
+border:1px solid #35466d;
+background:#070c19;
+color:white;
+outline:none;
+}
+
+button{
+border:0;
+padding:12px 18px;
+border-radius:11px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.loginBtn{
+width:100%;
+background:linear-gradient(90deg,#00a8ff,#754dff);
+color:white;
+}
+
+.logout{
+background:#572037;
+color:white;
+}
+
+#loginMessage{
+margin-top:15px;
+color:#ff718a;
+}
+
+#panel{
+display:none;
+}
+
+.tabs{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+flex-wrap:wrap;
+}
+
+.tabs button{
+background:#17233f;
+color:white;
+}
+
+.games{
+display:grid;
+gap:15px;
+}
+
+.game{
+background:#111a30;
+border:1px solid #2c3d63;
+border-radius:16px;
+padding:18px;
+}
+
+.game h3{
+margin-bottom:10px;
+}
+
+.game p{
+color:#aeb9d4;
+line-height:1.7;
+margin-bottom:7px;
+}
+
+.actions{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-top:15px;
+}
+
+.approve{
+background:#167c48;
+color:white;
+}
+
+.reject{
+background:#a34736;
+color:white;
+}
+
+.delete{
+background:#5b2034;
+color:white;
+}
+
+.open{
+background:#1b527a;
+color:white;
+}
+
+.empty{
+color:#929fbd;
+padding:20px;
+text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">S.H.L ADMIN</div>
+</header>
+
+
+<div class="container">
+
+<div class="login" id="loginBox">
+
+<h2>🔐 ورود مدیر</h2>
+
+<input
+id="email"
+type="email"
+placeholder="ایمیل مدیر">
+
+<input
+id="password"
+type="password"
+placeholder="رمز عبور">
+
+<button class="loginBtn" onclick="login()">
+ورود به پنل
+</button>
+
+<div id="loginMessage"></div>
+
+</div>
+
+
+<div id="panel">
+
+<div class="panel">
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:20px;
+">
+
+<h2>🎮 مدیریت بازی‌ها</h2>
+
+<button class="logout" onclick="logout()">
+خروج
+</button>
+
+</div>
+
+<div class="tabs">
+
+<button onclick="loadGames('pending')">
+🟡 در انتظار
+</button>
+
+<button onclick="loadGames('approved')">
+🟢 تأییدشده
+</button>
+
+<button onclick="loadGames('rejected')">
+🔴 ردشده
+</button>
+
+</div>
+
+<div class="games" id="games">
+در حال دریافت...
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+const SUPABASE_URL="YOUR_SUPABASE_URL";
+const SUPABASE_KEY="YOUR_SUPABASE_PUBLISHABLE_KEY";
+
+const db=supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+/* ================= LOGIN ================= */
+
+async function login(){
+
+const email=
+document.getElementById("email").value.trim();
+
+const password=
+document.getElementById("password").value;
+
+const message=
+document.getElementById("loginMessage");
+
+message.textContent="در حال ورود...";
+
+const {error}=await db.auth.signInWithPassword({
+email,
+password
+});
+
+if(error){
+
+message.textContent=
+"ورود ناموفق: "+error.message;
+
+return;
+}
+
+await checkAdmin();
+}
+
+
+/* ================= CHECK ADMIN ================= */
+
+async function checkAdmin(){
+
+const {
+data:{user}
+}=await db.auth.getUser();
+
+if(!user){
+
+showLogin();
+
+return;
+}
+
+const {data,error}=await db
+.from("admins")
+.select("user_id")
+.eq("user_id",user.id)
+.maybeSingle();
+
+if(error || !data){
+
+await db.auth.signOut();
+
+document.getElementById("loginMessage")
+.textContent=
+"این حساب دسترسی مدیر ندارد.";
+
+showLogin();
+
+return;
+}
+
+document.getElementById("loginBox")
+.style.display="none";
+
+document.getElementById("panel")
+.style.display="block";
+
+loadGames("pending");
+}
+
+
+/* ================= LOAD ================= */
+
+async function loadGames(status){
+
+const box=document.getElementById("games");
+
+box.innerHTML="در حال دریافت...";
+
+const {data,error}=await db
+.from("games")
+.select("*")
+.eq("status",status)
+.order("created_at",{ascending:false});
+
+if(error){
+
+box.innerHTML=
+"خطا: "+error.message;
+
+return;
+}
+
+if(!data.length){
+
+box.innerHTML=
+'<div class="empty">موردی وجود ندارد.</div>';
+
+return;
+}
+
+box.innerHTML="";
+
+data.forEach(game=>{
+
+const item=document.createElement("div");
+
+item.className="game";
+
+item.innerHTML=`
+<h3>${escapeHtml(game.name)}</h3>
+
+<p>
+👤 سازنده:
+${escapeHtml(game.creator)}
+</p>
+
+<p>
+📝 ${escapeHtml(game.description)}
+</p>
+
+<p>
+📅 ${new Date(game.created_at).toLocaleString("fa-IR")}
+</p>
+
+<div class="actions">
+
+${
+status==="pending"
+?
+`
+<button class="approve"
+onclick="changeStatus(${game.id},'approved')">
+✅ تأیید
+</button>
+
+<button class="reject"
+onclick="changeStatus(${game.id},'rejected')">
+❌ رد
+</button>
+`
+:""
+}
+
+<button class="open"
+onclick="window.open('${escapeAttr(game.game_url)}','_blank')">
+🎮 باز کردن بازی
+</button>
+
+<button class="delete"
+onclick="deleteGame(${game.id})">
+🗑️ حذف
+</button>
+
+</div>
+`;
+
+box.appendChild(item);
+
+});
+}
+
+
+/* ================= CHANGE STATUS ================= */
+
+async function changeStatus(id,status){
+
+const {error}=await db
+.from("games")
+.update({status})
+.eq("id",id);
+
+if(error){
+
+alert("خطا: "+error.message);
+
+return;
+}
+
+loadGames("pending");
+}
+
+
+/* ================= DELETE ================= */
+
+async function deleteGame(id){
+
+if(!confirm("این بازی حذف شود؟"))
+return;
+
+const {error}=await db
+.from("games")
+.delete()
+.eq("id",id);
+
+if(error){
+
+alert("خطا: "+error.message);
+
+return;
+}
+
+loadGames("pending");
+}
+
+
+/* ================= LOGOUT ================= */
+
+async function logout(){
+
+await db.auth.signOut();
+
+showLogin();
+}
+
+function showLogin(){
+
+document.getElementById("loginBox")
+.style.display="block";
+
+document.getElementById("panel")
+.style.display="none";
+}
+
+
+/* ================= SECURITY HELPERS ================= */
+
+function escapeHtml(value){
+
+return String(value)
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+}
+
+function escapeAttr(value){
+
+return String(value)
+.replaceAll("'","%27")
+.replaceAll('"',"%22");
+}
+
+
+/* ================= SESSION ================= */
+
+db.auth.onAuthStateChange(
+async(event,session)=>{
+
+if(session){
+
+await checkAdmin();
+
+}
+
+}
+);
+
+</script>
+
+</body>
+</html>
